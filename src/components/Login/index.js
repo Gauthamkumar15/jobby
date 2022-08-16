@@ -32,7 +32,7 @@ class Login extends Component {
     }
     const response = await fetch('https://apis.ccbp.in/login', options)
     const data = await response.json()
-    console.log(data)
+    console.log(response)
     if (response.ok === true) {
       this.onLoginSuccess(data.jwt_token)
     } else if (data.status_code === 400) {
