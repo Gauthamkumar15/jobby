@@ -35,6 +35,23 @@
   width: 25%;
 }
 
+.justify-loader {
+  display: flex;
+  justify-content: center;
+}
+.retry-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+}
+.retry-button {
+  background-color: #4f46e5;
+  padding: 2%;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .horizontal-line {
   margin-top: 5%;
   margin-bottom: 5%;
