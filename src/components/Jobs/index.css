@@ -80,7 +80,7 @@
 
 .search-and-jobs {
   margin-left: 3%;
-  margin-right: 3%;
+
   display: flex;
   align-items: flex-start;
 }
@@ -102,4 +102,47 @@
   border-width: 1px;
   border-left: none;
   cursor: pointer;
+}
+
+.jobs-container-2 {
+  margin-left: 3%;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.job-display-list {
+  margin: 3%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jobs-api-failure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.jobs-api-failure-image {
+  width: 100%;
+}
+
+.jobs-api-failure-button {
+  padding: 1%;
+  background-color: #4f46e5;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.jobs-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.jobs-not-found-image {
+  width: 65%;
 }

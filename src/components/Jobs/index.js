@@ -4,6 +4,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {BsSearch} from 'react-icons/bs'
 import Loader from 'react-loader-spinner'
+import DisplayJobs from '../DisplayJobs'
 
 import Header from '../Header'
 
@@ -52,10 +53,15 @@ class Jobs extends Component {
     profileData: {},
     profileSuccess: false,
     isLoadingProfile: true,
+    isLoadingJobs: true,
     profileFailure: false,
     search: '',
     employment: '',
     minPackage: '',
+    jobsList: [],
+    jobSuccess: false,
+    jobFailure: false,
+    jobsListLengthIsZero: false,
   }
 
   componentDidMount() {
@@ -93,6 +99,13 @@ class Jobs extends Component {
     this.setState({search: event.target.value})
   }
 
+  onSearchLoading = () => {
+    this.setState(
+      {isLoadingJobs: true, jobsListLengthIsZero: false},
+      this.onSearch,
+    )
+  }
+
   onSearch = async () => {
     const {search, minPackage, employment} = this.state
     const jwtToken = Cookies.get('jwt_token')
@@ -107,7 +120,26 @@ class Jobs extends Component {
       options,
     )
     const data = await response.json()
-    console.log(data)
+    console.log(response)
+    if (response.ok === true) {
+      if (data.jobs.length > 0) {
+        this.setState({
+          jobsList: data.jobs,
+          isLoadingJobs: false,
+          jobSuccess: true,
+          jobsListLengthIsZero: false,
+        })
+      } else if (data.jobs.length === 0) {
+        this.setState({
+          jobsList: data.jobs,
+          isLoadingJobs: false,
+          jobSuccess: true,
+          jobsListLengthIsZero: true,
+        })
+      }
+    } else {
+      this.setState({isLoadingJobs: false, jobFailure: true})
+    }
   }
 
   onChangeEmployment = event => {
@@ -118,11 +150,11 @@ class Jobs extends Component {
       employmentList.splice(index, 1)
     }
     const string = employmentList.join(',')
-    this.setState({employment: string}, this.componentDidMount)
+    this.setState({employment: string}, this.onSearchLoading)
   }
 
   onChangeSalary = event => {
-    this.setState({minPackage: event.target.value}, this.componentDidMount)
+    this.setState({minPackage: event.target.value}, this.onSearchLoading)
   }
 
   render() {
@@ -131,6 +163,11 @@ class Jobs extends Component {
       profileSuccess,
       isLoadingProfile,
       profileFailure,
+      jobsList,
+      isLoadingJobs,
+      jobSuccess,
+      jobFailure,
+      jobsListLengthIsZero,
     } = this.state
     return (
       <>
@@ -212,23 +249,72 @@ class Jobs extends Component {
               ))}
             </ul>
           </div>
-
-          <div className="search-and-jobs">
-            <input
-              onChange={this.onSearchChange}
-              className="search"
-              type="search"
-              placeholder="Search"
-            />
-
-            <button
-              className="search-button"
-              type="button"
-              testid="searchButton"
-              onClick={this.onSearch}
-            >
-              <BsSearch className="search-icon" />
-            </button>
+          <div className="jobs-container-2">
+            <div className="search-and-jobs">
+              <div>
+                <input
+                  onChange={this.onSearchChange}
+                  className="search"
+                  type="search"
+                  placeholder="Search"
+                />
+              </div>
+              <div>
+                <button
+                  className="search-button"
+                  type="button"
+                  testid="searchButton"
+                  onClick={this.onSearchLoading}
+                >
+                  <BsSearch />
+                </button>
+              </div>
+            </div>
+            {isLoadingJobs && (
+              <div className="loader-container justify-loader" testid="loader">
+                <Loader
+                  type="ThreeDots"
+                  color="#ffffff"
+                  height="50"
+                  width="50"
+                />
+              </div>
+            )}
+            {!isLoadingJobs && jobSuccess && !jobsListLengthIsZero && (
+              <ul className="job-display-list">
+                {jobsList.map(eachItem => (
+                  <DisplayJobs key={eachItem.id} eachItem={eachItem} />
+                ))}
+              </ul>
+            )}
+            {jobsListLengthIsZero && (
+              <div className="jobs-not-found">
+                <img
+                  className="jobs-not-found-image"
+                  src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png "
+                  alt="no jobs"
+                />
+                <h1>No Jobs Found</h1>
+                <p>We could not find any jobs. Try other filters.</p>
+              </div>
+            )}
+            {jobFailure && (
+              <div className="jobs-api-failure">
+                <img
+                  src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+                  alt="failure view"
+                />
+                <h1>Oops! Something Went Wrong</h1>
+                <p>We cannot seem to find the page you are looking for.</p>
+                <button
+                  onClick={this.onSearchLoading}
+                  className="jobs-api-failure-button"
+                  type="button"
+                >
+                  Retry
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </>

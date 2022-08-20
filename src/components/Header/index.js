@@ -18,11 +18,14 @@ const Header = props => {
   return (
     <div className="header-container">
       <div>
-        <img
-          className="header-logo"
-          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-          alt="website logo"
-        />
+        <Link to="/">
+          {' '}
+          <img
+            className="header-logo"
+            src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+            alt="website logo"
+          />
+        </Link>
       </div>
       <div className="header-link-container-lg">
         <Link className="header-link" to="/">

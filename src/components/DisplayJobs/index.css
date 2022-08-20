@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.display-job-list {
+  background-color: #272727;
+  border-radius: 10px;
+  margin: 3%;
+}
+
+.job-display-image {
+  width: 6%;
+  height: 8vh;
+  margin-top: 3%;
+}
+
+.display-job-header {
+  display: flex;
+  margin-left: 2%;
+}
+
+.display-job-heading-star {
+  width: 50%;
+  margin-top: 3%;
+  padding: 0;
+}
+
+.display-job-star {
+  display: flex;
+  align-items: center;
+  margin-left: 3%;
+}
+
+.display-job-heading {
+  font-size: 100%;
+  margin-left: 3%;
+  margin-top: 0;
+}
+
+.display-job-para {
+  margin-left: 2%;
+}
+
+.location-and-emptype-container {
+  display: flex;
+  align-items: center;
+  margin-left: 2%;
+  width: 25%;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.emp-type {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.location-and-emptype-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.location-and-emptype-para {
+  margin-left: 5%;
+}
+
+.location-and-emptype-para1 {
+  margin-right: 2%;
+}
+
+.display-job-horizontal-line {
+  color: #535e6f;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.display-job-description-heading {
+  font-size: 90%;
+  margin-left: 2%;
+}
+
+.display-job-description {
+  font-size: 85%;
+  margin-left: 2%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+
+.display-job-list-div {
+  display: flex;
+  flex-direction: column;
+}
