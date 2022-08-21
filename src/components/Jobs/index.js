@@ -172,7 +172,25 @@ class Jobs extends Component {
     return (
       <>
         <Header />
+
         <div className="jobs-container">
+          <div className="search-and-jobs-small">
+            <input
+              onChange={this.onSearchChange}
+              className="search-small"
+              type="search"
+              placeholder="Search"
+            />
+
+            <button
+              className="search-button-small"
+              type="button"
+              testid="searchButton"
+              onClick={this.onSearchLoading}
+            >
+              <BsSearch />
+            </button>
+          </div>
           <div className="profile-and-filter">
             {isLoadingProfile && (
               <div className="loader-container justify-loader" testid="loader">
@@ -251,24 +269,21 @@ class Jobs extends Component {
           </div>
           <div className="jobs-container-2">
             <div className="search-and-jobs">
-              <div>
-                <input
-                  onChange={this.onSearchChange}
-                  className="search"
-                  type="search"
-                  placeholder="Search"
-                />
-              </div>
-              <div>
-                <button
-                  className="search-button"
-                  type="button"
-                  testid="searchButton"
-                  onClick={this.onSearchLoading}
-                >
-                  <BsSearch />
-                </button>
-              </div>
+              <input
+                onChange={this.onSearchChange}
+                className="search"
+                type="search"
+                placeholder="Search"
+              />
+
+              <button
+                className="search-button"
+                type="button"
+                testid="searchButton"
+                onClick={this.onSearchLoading}
+              >
+                <BsSearch />
+              </button>
             </div>
             {isLoadingJobs && (
               <div className="loader-container justify-loader" testid="loader">
@@ -301,6 +316,7 @@ class Jobs extends Component {
             {jobFailure && (
               <div className="jobs-api-failure">
                 <img
+                  className="jobs-api-failure-image"
                   src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
                   alt="failure view"
                 />
