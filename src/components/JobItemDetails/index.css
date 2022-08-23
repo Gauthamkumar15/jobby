@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+
+.job-item-details-bg-container {
+  background-color: #000000;
+  min-height: 100vh;
+}
+
+.job-item-details-justify-loader {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.job-item-details-specific-bg-container {
+  background-color: #272727;
+  border-radius: 10px;
+  margin: 3%;
+}
+
+.job-item-details-logo {
+  height: 50px;
+  width: 50px;
+  margin: 3%;
+}
+
+.job-item-details-logo-heading-star-rating-container {
+  display: flex;
+  width: 100%;
+}
+
+.job-item-details-title-star-rating-container {
+  margin-top: 3%;
+  padding: 0;
+}
+
+.job-item-details-star-rating {
+  display: flex;
+  align-items: flex-start;
+}
+
+.job-item-details-title {
+  font-size: 100%;
+  margin-left: 3%;
+  margin-top: 0;
+  width: 100%;
+}
+
+.job-item-details-star {
+  margin-top: 0;
+}
+
+.job-item-details-rating {
+  margin-left: 3%;
+  margin-top: 0;
+}
