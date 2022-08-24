@@ -19,7 +19,6 @@ const Header = props => {
     <div className="header-container">
       <div>
         <Link to="/">
-          {' '}
           <img
             className="header-logo"
             src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
@@ -27,21 +26,28 @@ const Header = props => {
           />
         </Link>
       </div>
-      <div className="header-link-container-lg">
-        <Link className="header-link" to="/">
-          Home
-        </Link>
-        <Link className="header-link" to="/jobs">
-          Jobs
-        </Link>
-      </div>
-      <button
-        onClick={onLogoutButtonClicked}
-        className="header-button-lg"
-        type="button"
-      >
-        Logout
-      </button>
+      <ul className="header-link-container-lg">
+        <li>
+          <Link className="header-link" to="/">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link className="header-link" to="/jobs">
+            Jobs
+          </Link>
+        </li>
+        <li>
+          <button
+            onClick={onLogoutButtonClicked}
+            className="header-button-lg"
+            type="button"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+
       <div className="header-link-container-sm">
         <Link className="header-link-sm" to="/">
           <AiFillHome />

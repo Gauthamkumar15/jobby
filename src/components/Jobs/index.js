@@ -2,6 +2,7 @@ import './index.css'
 
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 import {BsSearch} from 'react-icons/bs'
 import Loader from 'react-loader-spinner'
 import DisplayJobs from '../DisplayJobs'
@@ -86,7 +87,7 @@ class Jobs extends Component {
         profileSuccess: true,
         isLoadingProfile: false,
       })
-    } else if (response.status_code === 404) {
+    } else {
       this.setState({
         profileSuccess: false,
         isLoadingProfile: false,
@@ -158,6 +159,10 @@ class Jobs extends Component {
   }
 
   render() {
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken === undefined) {
+      return <Redirect to="/login" />
+    }
     const {
       profileData,
       profileSuccess,
@@ -230,38 +235,44 @@ class Jobs extends Component {
             )}
             <hr className="horizontal-line" />
 
-            <p>Type of Employment</p>
+            <h1 className="jobs-filter-heading">Type of Employment</h1>
 
             <ul className="employment-list">
               {employmentTypesList.map(eachItem => (
                 <li key={eachItem.employmentTypeId}>
                   <div className="check-and-para">
                     <input
+                      id={eachItem.employmentTypeId}
                       value={eachItem.employmentTypeId}
                       onChange={this.onChangeEmployment}
                       className="employment-check"
                       type="checkbox"
                     />
-                    <p> {eachItem.label}</p>
+                    <label htmlFor={eachItem.employmentTypeId}>
+                      {eachItem.label}
+                    </label>
                   </div>
                 </li>
               ))}
             </ul>
             <hr className="horizontal-line" />
-            <p>Salary Range</p>
+            <h1 className="jobs-filter-heading">Salary Range</h1>
 
             <ul className="employment-list">
               {salaryRangesList.map(eachItem => (
                 <li key={eachItem.salaryRangeId}>
                   <div className="check-and-para">
                     <input
+                      id={eachItem.salaryRangeId}
                       onChange={this.onChangeSalary}
                       value={eachItem.salaryRangeId}
                       name="salary"
                       className="employment-check"
                       type="radio"
                     />
-                    <p> {eachItem.label}</p>
+                    <label htmlFor={eachItem.salaryRangeId}>
+                      {eachItem.label}
+                    </label>
                   </div>
                 </li>
               ))}

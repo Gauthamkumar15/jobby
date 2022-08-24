@@ -32,10 +32,10 @@ class Login extends Component {
     }
     const response = await fetch('https://apis.ccbp.in/login', options)
     const data = await response.json()
-    console.log(response)
     if (response.ok === true) {
       this.onLoginSuccess(data.jwt_token)
-    } else if (data.status_code === 400) {
+    } else {
+      console.log(data)
       this.setState({errorMessage: `*${data.error_msg}`})
     }
   }
@@ -78,11 +78,12 @@ class Login extends Component {
               type="password"
               placeholder="Password"
             />
-            <p className="error-message">{errorMessage}</p>
+
             <button className="login-button" type="submit">
               Login
             </button>
           </form>
+          <p className="error-message">{errorMessage}</p>
         </div>
       </div>
     )

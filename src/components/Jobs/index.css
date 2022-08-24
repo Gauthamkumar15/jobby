@@ -52,6 +52,8 @@
 
 .check-and-para {
   display: flex;
+  align-items: center;
+  margin-bottom: 2%;
 }
 
 .job-display-list {
@@ -66,6 +68,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.jobs-filter-heading {
+  font-size: 100%;
 }
 
 @media screen and (min-width: 768px) {

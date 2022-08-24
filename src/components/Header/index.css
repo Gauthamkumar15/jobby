@@ -17,6 +17,13 @@
     display: none;
   }
 
+  .header-link-container-lg {
+    display: flex;
+    list-style: none;
+    width: 30%;
+    justify-content: space-between;
+  }
+
   .header-logo {
     width: 70%;
   }
@@ -28,13 +35,12 @@
   }
 
   .header-button-lg {
-    width: 10%;
     background-color: #4f46e5;
     border: none;
-    border-radius: 7px;
+    border-radius: 5px;
     cursor: pointer;
     color: #ffffff;
-    padding: 0.5%;
+    padding: 5px;
   }
 }
 
