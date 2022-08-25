@@ -100,6 +100,7 @@
 
 .job-item-details-heading {
   font-size: 130%;
+  align-self: flex-start;
 }
 
 .job-item-details-similar-jobs-heading {
@@ -136,6 +137,7 @@
 }
 .job-item-details-similar-jobs-specific-description {
   font-size: 80%;
+  text-align: left;
 }
 .job-item-details-similar-jobs-specific-location-emptype {
   display: flex;
@@ -146,6 +148,25 @@
 }
 .job-item-details-similar-jobs-specific-briefcase {
   margin-left: 10%;
+}
+
+.job-item-details-similar-jobs-specific-button-link {
+  align-self: center;
+  width: 30%;
+}
+
+.job-item-details-similar-jobs-specific-button {
+  background-color: #4f46e5;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5%;
+  width: 100%;
+}
+
+.job-item-details-description-heading-para {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
@@ -220,7 +241,7 @@
     border-radius: 10px;
     list-style: none;
     width: 30%;
-    margin-right: 5%;
+    margin-right: 2%;
     margin-bottom: 3%;
     padding: 2%;
   }
@@ -274,6 +295,8 @@
     margin-bottom: 5%;
     margin-right: 10%;
     align-items: center;
+    justify-content: flex-start;
+    width: 40%;
   }
   .job-item-details-skill-image {
     height: 25px;

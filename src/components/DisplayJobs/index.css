@@ -15,9 +15,9 @@
 }
 
 .display-job-star {
-  display: flex;
   margin-left: 3%;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
 }
 
 .location-and-emptype-container {
@@ -33,8 +33,13 @@
   margin-top: 0;
 }
 
+.display-job-specific-star {
+  margin-top: 0;
+}
+
 .display-job-para {
   margin-left: 2%;
+  margin-top: 0;
 }
 
 .location-and-emptype-main {

@@ -21,6 +21,31 @@ class JobItemDetails extends Component {
     this.loadJobDetails()
   }
 
+  loadJobDetails1 = async event => {
+    const jwtToken = Cookies.get('jwt_token')
+    const options = {
+      headers: {
+        Authorization: `bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
+    const id = event.target.value
+    console.log(id)
+
+    const response = await fetch(`https://apis.ccbp.in/jobs/${id}`, options)
+    const data = await response.json()
+    console.log(data)
+    if (response.ok === true) {
+      this.setState({
+        jobDetailsData: data,
+        jobDetailsSuccess: true,
+        isLoading: false,
+      })
+    } else {
+      this.setState({jobDetailsFailure: true, isLoading: false})
+    }
+  }
+
   loadJobDetails = async () => {
     const jwtToken = Cookies.get('jwt_token')
     const {match} = this.props
@@ -208,48 +233,59 @@ class JobItemDetails extends Component {
                       className="job-item-details-similar-jobs-specific"
                       key={eachItem.id}
                     >
-                      <Link to={`/jobs/${eachItem.id}`}>
-                        <div className="job-item-details-similar-jobs-specific-image-title-star-rating">
-                          <img
-                            className="job-item-details-similar-jobs-specific-image"
-                            src={eachItem.company_logo_url}
-                            alt="similar job company logo"
-                          />
-                          <div className="job-item-details-similar-jobs-specific-title-star-rating">
-                            <h1 className="job-item-details-similar-jobs-specific-title">
-                              {eachItem.title}
-                            </h1>
-                            <div className="job-item-details-similar-jobs-specific-star-rating">
-                              <AiFillStar
-                                className="job-item-details-similar-jobs-specific-star"
-                                fill="#fcc035"
-                              />
-                              <p className="job-item-details-similar-jobs-specific-rating">
-                                {eachItem.rating}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <h1 className="job-item-details-heading">
-                            Description
+                      <div className="job-item-details-similar-jobs-specific-image-title-star-rating">
+                        <img
+                          className="job-item-details-similar-jobs-specific-image"
+                          src={eachItem.company_logo_url}
+                          alt="similar job company logo"
+                        />
+                        <div className="job-item-details-similar-jobs-specific-title-star-rating">
+                          <h1 className="job-item-details-similar-jobs-specific-title">
+                            {eachItem.title}
                           </h1>
-                          <p className="job-item-details-similar-jobs-specific-description">
-                            {eachItem.job_description}
-                          </p>
-                          <div className="job-item-details-similar-jobs-specific-location-emptype">
-                            <MdLocationOn />
-                            <p className="job-item-details-similar-jobs-specific-location-emptype-para">
-                              {eachItem.location}
-                            </p>
-
-                            <BsFillBriefcaseFill className="job-item-details-similar-jobs-specific-briefcase" />
-                            <p className="job-item-details-similar-jobs-specific-location-emptype-para">
-                              {eachItem.employment_type}
+                          <div className="job-item-details-similar-jobs-specific-star-rating">
+                            <AiFillStar
+                              className="job-item-details-similar-jobs-specific-star"
+                              fill="#fcc035"
+                            />
+                            <p className="job-item-details-similar-jobs-specific-rating">
+                              {eachItem.rating}
                             </p>
                           </div>
                         </div>
-                      </Link>
+                      </div>
+                      <div className="job-item-details-description-heading-para">
+                        <h1 className="job-item-details-heading">
+                          Description
+                        </h1>
+                        <p className="job-item-details-similar-jobs-specific-description">
+                          {eachItem.job_description}
+                        </p>
+                        <div className="job-item-details-similar-jobs-specific-location-emptype">
+                          <MdLocationOn />
+                          <p className="job-item-details-similar-jobs-specific-location-emptype-para">
+                            {eachItem.location}
+                          </p>
+
+                          <BsFillBriefcaseFill className="job-item-details-similar-jobs-specific-briefcase" />
+                          <p className="job-item-details-similar-jobs-specific-location-emptype-para">
+                            {eachItem.employment_type}
+                          </p>
+                        </div>
+                        <Link
+                          className="job-item-details-similar-jobs-specific-button-link"
+                          to={`/jobs/${eachItem.id}`}
+                        >
+                          <button
+                            className="job-item-details-similar-jobs-specific-button"
+                            value={eachItem.id}
+                            type="button"
+                            onClick={this.loadJobDetails1}
+                          >
+                            View More
+                          </button>
+                        </Link>
+                      </div>
                     </li>
                   ))}
                 </ul>

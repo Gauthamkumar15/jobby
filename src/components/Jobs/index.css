@@ -68,6 +68,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .jobs-filter-heading {
@@ -143,6 +144,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
   }
 
   .jobs-api-failure-image {
@@ -212,6 +214,7 @@
   }
   .jobs-api-failure-image {
     width: 100%;
+    text-align: center;
   }
   .jobs-api-failure-button {
     padding: 3%;

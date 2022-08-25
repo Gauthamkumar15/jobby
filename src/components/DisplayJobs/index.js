@@ -20,7 +20,10 @@ const DisplayJobs = props => {
             <div className="display-job-heading-star">
               <h1 className="display-job-heading">{title}</h1>
               <div className="display-job-star">
-                <AiFillStar fill="#fcc035" />
+                <AiFillStar
+                  className="display-job-specific-star"
+                  fill="#fcc035"
+                />
 
                 <p className="display-job-para">{rating}</p>
               </div>
