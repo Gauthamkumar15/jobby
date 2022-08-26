@@ -21,6 +21,10 @@ class JobItemDetails extends Component {
     this.loadJobDetails()
   }
 
+  windowToTop = () => {
+    window.scrollTo(0, 0)
+  }
+
   loadJobDetails1 = async event => {
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -36,11 +40,14 @@ class JobItemDetails extends Component {
     const data = await response.json()
     console.log(data)
     if (response.ok === true) {
-      this.setState({
-        jobDetailsData: data,
-        jobDetailsSuccess: true,
-        isLoading: false,
-      })
+      this.setState(
+        {
+          jobDetailsData: data,
+          jobDetailsSuccess: true,
+          isLoading: false,
+        },
+        this.windowToTop,
+      )
     } else {
       this.setState({jobDetailsFailure: true, isLoading: false})
     }
